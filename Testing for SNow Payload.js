@@ -36,6 +36,11 @@ const server = http.createServer(async (req, res) => {
         res.end(`Error calling webhook: ${error}`);
       }
     }
+    else{
+        res.end('SNow Testing');
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+    }
 });
 
 server.listen(port, hostname, ()=>{
