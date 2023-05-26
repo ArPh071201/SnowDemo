@@ -8,6 +8,7 @@ const port = 3000;
 
 const server = http.createServer(async (req, res) => {
     let pl,wit;
+    try {
     if (req.url === '/webhook') {
       let body = '';
       req.on('data', (chunk) => {
@@ -25,23 +26,23 @@ const server = http.createServer(async (req, res) => {
       });
        
       
-      try {
+      
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
-        //await mainCode(pl);
         res.end('Webhook called for CR creation successfully ');
-      } catch (error) { 
+      }else{
+        res.end('SNow Testing');
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+    }
+     } catch (error) { 
         res.statusCode = 500;
         res.setHeader('Content-Type', 'text/plain');
         res.end(`Error calling webhook: ${error}`);
       }
     }
-    else{
-        res.end('SNow Testing');
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-    }
-});
+    
+);
 
 server.listen(port, hostname, ()=>{
     console.log(`Serving running at http://${hostname}:${port}/`)
