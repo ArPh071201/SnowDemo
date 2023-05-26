@@ -17,7 +17,7 @@ const server = http.createServer(async (req, res) => {
       req.on('end', () => {
         const payload = JSON.parse(body);
         // Payload processing logic goes here
-        pl = JSON.stringify(payload.resource);
+        pl = JSON.stringify(payload);
         wit = payload.resource.fields["System.WorkItemType"];
         console.log("EPIC payload: "+(pl));
         
